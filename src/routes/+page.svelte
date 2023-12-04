@@ -1,9 +1,9 @@
-<div>
-	<div id="header">
-		<h1>STATTON</h1>
-	</div>
+<script lang="ts">
+	import Button from '$lib/components/Button.svelte';
+</script>
 
+<div class="px-10 py-5 flex flex-col gap-5">
 	<a href="/question">
-		{'ANSWER QUESTION >>'}
+		<Button label="ANSWER QUESTION >>" />
 	</a>
 </div>

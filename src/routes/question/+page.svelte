@@ -1,21 +1,23 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
+	import Button from '$lib/components/Button.svelte';
+
 	export let data: PageData;
 </script>
 
 <form method="POST">
-	<div>
-		<div>
-			<div>
+	<div class="px-10 pt-5 flex flex-col gap-5">
+		<div class="flex flex-col gap-2">
+			<div class="text-xl">
 				Question #{data.question.id}
 			</div>
-			<h1>
+			<h1 class="text-3xl font-bold">
 				{data.question.title}
 			</h1>
 		</div>
 
-		<div>
+		<div class="flex flex-col gap-2 text-2xl">
 			{#each data.question.answers as option (option)}
 				<label>
 					<input type="radio" name="selectedAnswer" value={option.id} required />
@@ -24,8 +26,8 @@
 			{/each}
 		</div>
 
-		<button>
-			{'SUBMIT >>'}
-		</button>
+		<div>
+			<Button label="SUBMIT >>" />
+		</div>
 	</div>
 </form>

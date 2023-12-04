@@ -10,21 +10,31 @@
 	};
 </script>
 
-<div>
-	<div>Question #{data.question.id}</div>
-	<div>{data.question.title}</div>
-
-	<div>
-		Total number of responses: {totalNumResponses}
+<div class="px-10 py-5 flex flex-col gap-5">
+	<div class="flex flex-col gap-2">
+		<div class="text-xl">
+			Question #{data.question.id}
+		</div>
+		<h1 class="text-3xl font-bold">
+			{data.question.title}
+		</h1>
 	</div>
 
 	<div>
-		You selected: {data.response?.title}
+		<div class="inline-grid grid-cols-2 gap-y-2 gap-x-10 text-2xl">
+			{#each data.stats as { answer, count }, i}
+				{#if data.response?.title === answer}
+					<div class="font-bold">{answer}</div>
+					<div class="font-bold">{percentinator(count)}% ({count})</div>
+				{:else}
+					<div>{answer}</div>
+					<div>{percentinator(count)}% ({count})</div>
+				{/if}
+			{/each}
+		</div>
 	</div>
 
-	<div>
-		{#each data.stats as { answer, count }, i}
-			<div>{answer} {count} ({percentinator(count)}%)</div>
-		{/each}
+	<div class="pt-5">
+		Check back later today to see more respones. New question tomorrow 12pm EST
 	</div>
 </div>
