@@ -4,4 +4,44 @@
 
 * {
     border-color: inherit;
+    font-family: 'Pixeloid'
+}
+
+@font-face {
+    font-family: 'Pixeloid';
+    font-style: normal;
+    font-weight: 500;
+    /* src: url('/pixeloid/lora-v20-latin-500.eot'); */
+    src: url('/pixeloid/eot/PixeloidSans.eot');
+    /* IE9 Compat Modes */
+    src: local(''),
+        url('/pixeloid/eot/PixeloidSans.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('/pixeloid/woff/PixeloidSans.woff2') format('woff2'),
+        /* Super Modern Browsers */
+        url('/pixeloid/woff/PixeloidSans.woff') format('woff'),
+        /* Modern Browsers */
+        url('/pixeloid/ttf/PixeloidSans.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('/pixeloid/svg/PixeloidSans.svg') format('svg');
+    /* Legacy iOS */
+}
+
+@font-face {
+    font-family: 'Pixeloid';
+    font-style: normal;
+    font-weight: 900;
+    src: url('/pixeloid/eot/PixeloidSans-Bold.eot');
+    /* IE9 Compat Modes */
+    src: local(''),
+        url('/pixeloid/eot/PixeloidSans-Bold.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('/pixeloid/woff/PixeloidSans-Bold.woff2') format('woff2'),
+        /* Super Modern Browsers */
+        url('/pixeloid/woff/PixeloidSans-Bold.woff') format('woff'),
+        /* Modern Browsers */
+        url('/pixeloid/ttf/PixeloidSans-Bold.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('/pixeloid/svg/PixeloidSans-Bold.svg') format('svg');
+    /* Legacy iOS */
 }

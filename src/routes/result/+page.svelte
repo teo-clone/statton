@@ -13,7 +13,7 @@
 <div class="px-10 py-5 flex flex-col gap-5">
 	<div class="flex flex-col gap-2">
 		<div class="text-xl">
-			Question #{data.question.id}
+			Question #{data.question.number}
 		</div>
 		<h1 class="text-3xl font-bold">
 			{data.question.title}
@@ -35,6 +35,6 @@
 	</div>
 
 	<div class="pt-5">
-		Check back later today to see more respones. New question tomorrow 12pm EST
+		Check back later today to see more respones. New question tomorrow 12am EST
 	</div>
 </div>

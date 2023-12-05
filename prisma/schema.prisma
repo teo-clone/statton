@@ -16,7 +16,9 @@ datasource db {
 }
 
 model Question {
-  id      Int      @id @unique @default(autoincrement())
+  id      String   @id @unique @default(uuid())
+  date    String
+  number  String   @unique
   title   String
   answers Answer[]
 }
@@ -25,7 +27,7 @@ model Answer {
   id         String     @id @unique @default(uuid())
   title      String
   Question   Question   @relation(fields: [questionId], references: [id], onDelete: Cascade)
-  questionId Int
+  questionId String
   responses  Response[]
 }
 
