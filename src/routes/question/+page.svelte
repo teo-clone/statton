@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	import Button from '$lib/components/Button.svelte';
+	const alphabet = Array.from({ length: 26 }, (_, index) => String.fromCharCode(65 + index));
 
 	export let data: PageData;
 </script>
@@ -18,10 +18,21 @@
 		</div>
 
 		<div class="flex flex-col gap-2 text-2xl">
-			{#each data.question.answers as option (option)}
-				<label>
-					<input type="radio" name="selectedAnswer" value={option.id} required />
-					{option.title}
+			{#each data.question.answers as option, i}
+				<label class="flex w-fit cursor-pointer">
+					<input
+						type="radio"
+						name="selectedAnswer"
+						value={option.id}
+						required
+						class="appearance-none"
+					/>
+					<div
+						class="hover:bg-black hover:text-white label-checked:bg-black label-checked:text-white"
+					>
+						({alphabet[i]})
+						{option.title}
+					</div>
 				</label>
 			{/each}
 		</div>
