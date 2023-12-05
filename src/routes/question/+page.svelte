@@ -1,7 +1,6 @@
 <script lang="ts">
+	import { alphabet } from '$lib/utils/miscUtils';
 	import type { PageData } from './$types';
-
-	const alphabet = Array.from({ length: 26 }, (_, index) => String.fromCharCode(65 + index));
 
 	export let data: PageData;
 </script>

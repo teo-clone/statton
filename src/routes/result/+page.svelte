@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { alphabet } from '$lib/utils/miscUtils';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -24,10 +25,10 @@
 		<div class="inline-grid grid-cols-2 gap-y-2 gap-x-10 text-2xl">
 			{#each data.stats as { answer, count }, i}
 				{#if data.response?.title === answer}
-					<div class="font-bold">{answer}</div>
+					<div class="bg-black text-white">({alphabet[i]}) {answer}</div>
 					<div class="font-bold">{percentinator(count)}% ({count})</div>
 				{:else}
-					<div>{answer}</div>
+					<div>({alphabet[i]}) {answer}</div>
 					<div>{percentinator(count)}% ({count})</div>
 				{/if}
 			{/each}
