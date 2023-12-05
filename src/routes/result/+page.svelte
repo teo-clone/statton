@@ -25,7 +25,7 @@
 		<div class="inline-grid grid-cols-2 gap-y-2 gap-x-10 text-2xl">
 			{#each data.stats as { answer, count }, i}
 				{#if data.response?.title === answer}
-					<div class="bg-black text-white">({alphabet[i]}) {answer}</div>
+					<div class="bg-black text-white w-fit">({alphabet[i]}) {answer}</div>
 					<div class="font-bold">{percentinator(count)}% ({count})</div>
 				{:else}
 					<div>({alphabet[i]}) {answer}</div>
