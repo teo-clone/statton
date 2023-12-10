@@ -29,10 +29,14 @@ model Answer {
   Question   Question   @relation(fields: [questionId], references: [id], onDelete: Cascade)
   questionId String
   responses  Response[]
+
+  @@index([questionId])
 }
 
 model Response {
   id       String @id @unique @default(uuid())
   Answer   Answer @relation(fields: [answerId], references: [id], onDelete: Cascade)
   answerId String
+
+  @@index([answerId])
 }
