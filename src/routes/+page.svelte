@@ -4,6 +4,6 @@
 
 <div class="px-10 py-5 flex flex-col gap-5">
 	<a href="/question">
-		<button class="text-3xl text-left font-bold">{'VIEW QUESTION >>'}</button>
+		<Button label="VIEW QUESTION >>" />
 	</a>
 </div>

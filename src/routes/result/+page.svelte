@@ -26,7 +26,7 @@
 			{#each data.stats as { answer, count }, i}
 				{#if data.response?.title === answer}
 					<div class="bg-black text-white w-fit">({alphabet[i]}) {answer}</div>
-					<div class="font-bold">{percentinator(count)}% ({count})</div>
+					<div class="bg-black text-white w-fit">{percentinator(count)}% ({count})</div>
 				{:else}
 					<div>({alphabet[i]}) {answer}</div>
 					<div>{percentinator(count)}% ({count})</div>

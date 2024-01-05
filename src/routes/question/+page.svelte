@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Button from '$lib/components/Button.svelte';
 	import { alphabet } from '$lib/utils/miscUtils';
 	import type { PageData } from './$types';
 
@@ -39,7 +40,7 @@
 		<input type="hidden" name="questionId" value={data.question.id} />
 
 		<div>
-			<button class="text-3xl font-bold">{'SUBMIT >>'}</button>
+			<Button label="SUBMIT >>" />
 		</div>
 	</div>
 </form>
