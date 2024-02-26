@@ -1,4 +1,5 @@
 <script lang="ts">
+	import PieChart from '$lib/components/PieChart.svelte';
 	import { alphabet } from '$lib/utils/miscUtils';
 	import type { PageData } from './$types';
 
@@ -9,6 +10,14 @@
 	const percentinator = (count: number) => {
 		return ((count / totalNumResponses) * 100).toFixed();
 	};
+
+	const pieSlices = data.stats.map((stat, i) => {
+		return {
+			label: `(${alphabet[i]})`,
+			angle: (stat.count / totalNumResponses) * 360,
+			focused: data.response?.title === stat.answer
+		};
+	});
 </script>
 
 <div class="px-10 py-5 flex flex-col gap-5">
@@ -21,8 +30,8 @@
 		</h1>
 	</div>
 
-	<div>
-		<div class="inline-grid grid-cols-2 gap-y-2 gap-x-10 text-2xl">
+	<div class="flex gap-[20px] flex-wrap">
+		<div class="inline-grid grid-cols-2 gap-y-2 gap-x-10 text-2xl items-center">
 			{#each data.stats as { answer, count }, i}
 				{#if data.response?.title === answer}
 					<div class="bg-black text-white w-fit">({alphabet[i]}) {answer}</div>
@@ -33,6 +42,7 @@
 				{/if}
 			{/each}
 		</div>
+		<PieChart slices={pieSlices} />
 	</div>
 
 	<div class="pt-5">
