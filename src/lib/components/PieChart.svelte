@@ -9,14 +9,14 @@
 
 	const sketch: Sketch = (p5) => {
 		p5.setup = () => {
-			p5.createCanvas(250, 250);
-			p5.textFont('Pixeloid', 13);
+			p5.createCanvas(360, 360);
+			p5.textFont('Pixeloid', 24);
 		};
 
 		p5.draw = () => {
-			let diameter = 200;
-			let centerX = 125;
-			let centerY = 125;
+			let diameter = 320;
+			let centerX = 180;
+			let centerY = 180;
 
 			let angleStart = 0;
 			for (let { label, angle, focused } of slices) {

@@ -6,4 +6,6 @@
 	<div class="w-fit border-r px-10 py-5 text-lg font-bold">STATTON</div>
 </div>
 
-<slot />
+<div class="max-w-[500px]">
+	<slot />
+</div>
