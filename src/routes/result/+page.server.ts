@@ -11,12 +11,12 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
 
     // if response is not found in cookies for today's question, redirect the user to the landing page
     if (!answerId) {
-        redirect(302, `/`);
+        throw redirect(302, `/`);
     }
 
     const response = questionData.answers.find((answer) => answer.id === answerId);
 
-    const answerStats = Promise.all(questionData.answers.map(async (a) => {
+    const answerStats = await Promise.all(questionData.answers.map(async (a) => {
         return {
             answer: a.title,
             count: await db.response.count({

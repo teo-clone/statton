@@ -12,7 +12,7 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
 
     // if user has already submitted a response, redirect them to result screen 
     if (userResponse !== undefined) {
-        redirect(302, `/result`);
+        throw redirect(301, `/result`);
     }
 
     return { question: questionData };
@@ -35,6 +35,6 @@ export const actions = {
             }
         });
 
-        redirect(302, `/result`);
+        throw redirect(301, `/result`);
     },
 } satisfies Actions;

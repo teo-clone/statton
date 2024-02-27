@@ -10,11 +10,11 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
 
     // if user has already submitted a response, redirect them to result screen 
     if (userResponse !== undefined) {
-        redirect(302, `/result`);
+        throw redirect(302, `/result`);
     }
 
     // otherwise start the user off on question page for now
-    redirect(302, `/question`);
+    throw redirect(302, `/question`);
 
     error(404, 'Not found');
 };
