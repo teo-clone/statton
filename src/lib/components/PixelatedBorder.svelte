@@ -1,12 +1,6 @@
-<script>
-	export let label = '';
-</script>
-
-<button
-	class="pixel-corners--wrapper py-2 px-4 text-3xl text-left font-bold hover:text-white hover:bg-black"
->
-	{label}
-</button>
+<div class="pixel-corners--wrapper py-2 px-4 text-xl font-bold hover:text-white hover:bg-black">
+	<slot />
+</div>
 
 <!-- 
 	css below comes from: Pixelated rounded corners!

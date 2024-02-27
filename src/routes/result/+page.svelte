@@ -1,5 +1,6 @@
 <script lang="ts">
-	import PieChart from '$lib/components/PieChart.svelte';
+	import Chart from '$lib/components/Chart.svelte';
+	import ChartTypeToggler from '$lib/components/ChartTypeToggler.svelte';
 	import { alphabet } from '$lib/utils/miscUtils';
 	import type { PageData } from './$types';
 
@@ -11,39 +12,49 @@
 		return ((count / totalNumResponses) * 100).toFixed();
 	};
 
-	const pieSlices = data.stats.map((stat, i) => {
+	const slices = data.stats.map((stat, i) => {
 		return {
 			label: `(${alphabet[i]})`,
-			angle: (stat.count / totalNumResponses) * 360,
+			angle: stat.count,
 			focused: data.response?.title === stat.answer
 		};
 	});
+
+	let chartType: 'pie' | 'polarArea' | 'bar' = 'pie';
 </script>
 
-<div class="px-10 py-5 flex flex-col gap-5">
-	<div class="flex flex-col gap-2">
-		<h1 class="text-3xl font-bold">
-			{data.question.title}
-		</h1>
+<div class="flex flex-col gap-2">
+	<h1 class="text-xl font-bold">
+		{data.question.title}
+	</h1>
+</div>
+
+<div class="flex flex-col gap-[10px] text-xl items-center">
+	{#each data.stats as { answer, count }, i}
+		<div
+			class={`flex w-full justify-between ${
+				data.response?.title === answer ? 'bg-black text-white w-fit' : ''
+			}`}
+		>
+			<div>({alphabet[i]}) {answer}</div>
+			<div>{percentinator(count)}% ({count})</div>
+		</div>
+	{/each}
+</div>
+
+<div class="mt-[20px] flex flex-col items-center justify-center gap-[10px]">
+	<div class="flex items-center gap-2 mb-5">
+		<p class="text-sm">view as:</p>
+		<ChartTypeToggler bind:chartType toggleValue="pie" />
+		<ChartTypeToggler bind:chartType toggleValue="polarArea" />
+		<ChartTypeToggler bind:chartType toggleValue="bar" />
 	</div>
 
-	<div class="flex flex-col gap-[10px] text-2xl items-center">
-		{#each data.stats as { answer, count }, i}
-			<div
-				class={`flex w-full justify-between ${
-					data.response?.title === answer ? 'bg-black text-white w-fit' : ''
-				}`}
-			>
-				<div>({alphabet[i]}) {answer}</div>
-				<div>{percentinator(count)}% ({count})</div>
-			</div>
-		{/each}
-	</div>
-	<div class="flex justify-center">
-		<PieChart slices={pieSlices} />
-	</div>
-
-	<div class="pt-5">
-		Check back later today to see more respones. New question tomorrow 12am EST
-	</div>
+	{#if chartType === 'pie'}
+		<Chart chartType="pie" {slices} />
+	{:else if chartType === 'polarArea'}
+		<Chart chartType="polarArea" {slices} />
+	{:else if chartType === 'bar'}
+		<Chart chartType="bar" {slices} hideLegend />
+	{/if}
 </div>
