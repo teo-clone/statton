@@ -11,7 +11,7 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
 
     // if response is not found in cookies for today's question, redirect the user to the landing page
     if (!answerId) {
-        throw redirect(302, `/`);
+        redirect(302, `/`);
     }
 
     const response = questionData.answers.find((answer) => answer.id === answerId);
@@ -33,5 +33,5 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
         stats: answerStats
     };
 
-    throw error(404, 'Not found');
+    error(404, 'Not found');
 };

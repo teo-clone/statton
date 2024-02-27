@@ -12,12 +12,12 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
 
     // if user has already submitted a response, redirect them to result screen 
     if (userResponse !== undefined) {
-        throw redirect(302, `/result`);
+        redirect(302, `/result`);
     }
 
     return { question: questionData };
 
-    throw error(404, 'Not found');
+    error(404, 'Not found');
 };
 
 export const actions = {
@@ -27,7 +27,7 @@ export const actions = {
         const answer = data.get("selectedAnswer") as string;
         const questionId = data.get("questionId") as string;
 
-        cookies.set(questionId, answer);
+        cookies.set(questionId, answer, { path: '/' });
 
         await db.response.create({
             data: {
@@ -35,6 +35,6 @@ export const actions = {
             }
         });
 
-        throw redirect(302, `/result`);
+        redirect(302, `/result`);
     },
 } satisfies Actions;
