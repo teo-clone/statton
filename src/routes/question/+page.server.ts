@@ -16,8 +16,6 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
     }
 
     return { question: questionData };
-
-    error(404, 'Not found');
 };
 
 export const actions = {

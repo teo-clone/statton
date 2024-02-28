@@ -1,10 +1,11 @@
 <script lang="ts">
-	export let chartType: 'pie' | 'polarArea' | 'bar';
-	export let toggleValue: 'pie' | 'polarArea' | 'bar';
+	export let resultType: ResultType;
+	export let toggleValue: ResultType;
 
-	$: isSelected = chartType === toggleValue;
+	$: isSelected = resultType === toggleValue;
 
 	let labelMap = new Map();
+	labelMap.set('vanilla', 'Default');
 	labelMap.set('pie', 'Pie');
 	labelMap.set('polarArea', 'Polar');
 	labelMap.set('bar', 'Bar');
@@ -12,7 +13,7 @@
 
 <button
 	class={`px-2 hover:bg-black hover:text-white ${isSelected ? 'bg-black text-white' : ''}`}
-	on:click={() => (chartType = toggleValue)}
+	on:click={() => (resultType = toggleValue)}
 >
 	{labelMap.get(toggleValue)}
 </button>

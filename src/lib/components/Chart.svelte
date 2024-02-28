@@ -3,12 +3,13 @@
 	import Chart from 'chart.js/auto';
 
 	Chart.defaults.font.family = 'Pixeloid';
+	Chart.defaults.font.size = 16;
 
 	export let chartType: 'pie' | 'bar' | 'polarArea';
 
 	export let slices: {
 		label: string;
-		angle: number;
+		count: number;
 		focused: boolean;
 	}[];
 
@@ -24,7 +25,7 @@
 				labels: slices.map((slice) => slice.label),
 				datasets: [
 					{
-						data: slices.map((slice) => slice.angle),
+						data: slices.map((slice) => slice.count),
 						backgroundColor: slices.map((slice) => (slice.focused ? 'black' : 'white')),
 						borderColor: 'rgba(10, 10, 10, 0.6)',
 						borderWidth: 2

@@ -4,17 +4,17 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+
+	$: questionId = data.question.id;
+	$: question = data.question.title;
+	$: answers = data.question.answers;
 </script>
 
-<div class="flex flex-col gap-2">
-	<h1 class="text-xl font-bold">
-		{data.question.title}
-	</h1>
-</div>
+<h1 class="text-xl font-bold">{question}</h1>
 
 <form method="POST">
 	<div class="flex flex-col gap-2 text-xl">
-		{#each data.question.answers as option, i}
+		{#each answers as option, i}
 			<label class="flex w-fit cursor-pointer">
 				<input type="radio" name="selectedAnswer" value={option.id} required hidden />
 				<div
@@ -27,7 +27,7 @@
 		{/each}
 	</div>
 
-	<input hidden name="questionId" value={data.question.id} />
+	<input hidden name="questionId" value={questionId} />
 
 	<button class="w-fit mt-5">
 		<PixelatedBorder>{'SUBMIT >>'}</PixelatedBorder>

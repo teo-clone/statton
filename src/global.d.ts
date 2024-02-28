@@ -1,0 +1,1 @@
+type ResultType = "vanilla" | "pie" | "polarArea" | "bar";
