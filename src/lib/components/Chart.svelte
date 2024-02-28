@@ -36,8 +36,7 @@
 				responsive: true,
 				plugins: {
 					legend: {
-						display: !hideLegend,
-						position: 'bottom'
+						display: !hideLegend
 					}
 				}
 			}
