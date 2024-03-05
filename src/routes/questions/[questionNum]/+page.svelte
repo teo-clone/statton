@@ -1,6 +1,7 @@
 <script lang="ts">
 	import PixelatedBorder from '$lib/components/PixelatedBorder.svelte';
 	import { alphabet } from '$lib/utils/miscUtils';
+	import Icon from '@iconify/svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -33,9 +34,9 @@
 
 		<div class="w-fit mt-5">
 			<PixelatedBorder>
-				<button class="py-1 px-2 flex items-center gap-2">
+				<button class="py-1 px-2 flex items-center">
 					{'SUBMIT'}
-					<img class="w-5" src="/right-arrow.svg" alt="pixelated right arrow" />
+					<Icon icon="pixelarticons:arrow-right" width="24" />
 				</button>
 			</PixelatedBorder>
 		</div>
