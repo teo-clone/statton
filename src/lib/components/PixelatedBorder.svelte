@@ -1,4 +1,4 @@
-<div class="pixel-corners--wrapper py-2 px-4 font-bold hover:text-white hover:bg-black">
+<div class="pixel-corners--wrapper font-bold hover:text-white hover:bg-black">
 	<div class="pixel-corners">
 		<slot />
 	</div>

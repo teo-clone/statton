@@ -4,6 +4,7 @@
 	import PixelatedBorder from '$lib/components/PixelatedBorder.svelte';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+	import RoundedPixelatedBorder from '$lib/components/RoundedPixelatedBorder.svelte';
 
 	export let data: PageData;
 
@@ -19,22 +20,25 @@
 	};
 </script>
 
-<div class="flex">
-	<button on:click={() => toggleSort('questionNum')} class="text-sm flex font-bold items-center">
-		Number
-		{#if data.sortOrder === 'desc'}
-			<Icon icon="material-symbols:arrow-drop-down" width="20" />
-		{:else}
-			<Icon icon="material-symbols:arrow-drop-up" width="20" />
-		{/if}
-	</button>
+<div class="flex gap-2 items-center font-bold text-xs">
+	Sort By:
+	<RoundedPixelatedBorder>
+		<button on:click={() => toggleSort('questionNum')} class="flex items-center pl-4 pr-2">
+			Latest
+			{#if data.sortOrder === 'desc'}
+				<Icon icon="material-symbols:arrow-drop-down" width="20" />
+			{:else}
+				<Icon icon="material-symbols:arrow-drop-up" width="20" />
+			{/if}
+		</button>
+	</RoundedPixelatedBorder>
 </div>
 
 <div class="flex flex-col gap-[10px]">
 	{#each questions as question}
 		<PixelatedBorder>
 			<a href={`/questions/${question.number}`}>
-				<div class="flex items-center justify-between">
+				<div class="flex items-center justify-between py-2 px-4">
 					<div class="block truncate text-base">
 						#{question.number}: {question.title}
 					</div>
