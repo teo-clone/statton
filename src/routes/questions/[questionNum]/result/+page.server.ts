@@ -1,11 +1,19 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { db } from '$lib/db';
-import { todaysQuestion } from '$lib/utils/dbUtils';
 
 export const load: PageServerLoad = async ({ params, cookies }) => {
 
-    const questionData = await todaysQuestion();
+    const questionNum = params.questionNum;
+
+    const questionData = await db.question.findUniqueOrThrow({
+        where: {
+            number: questionNum
+        },
+        include: {
+            answers: true
+        }
+    });
 
     const answerId = cookies.get(questionData.id);
 

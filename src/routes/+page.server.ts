@@ -1,20 +1,29 @@
-import { error, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { todaysQuestion } from '$lib/utils/dbUtils';
+import { db } from '$lib/db';
 
-export const load: PageServerLoad = async ({ params, cookies }) => {
+export const load: PageServerLoad = async ({ url, cookies }) => {
+    type SortOrder = 'asc' | 'desc';
 
-    const questionData = await todaysQuestion();
+    const sortOrder = (url.searchParams.get('sortOrder') ?? 'desc') as SortOrder;
 
-    const userResponse = cookies.get(questionData.id);
+    const questions = await db.question.findMany({
+        orderBy: {
+            number: sortOrder
+        },
+        include: {
+            answers: true
+        }
+    });
 
-    // if user has already submitted a response, redirect them to result screen 
-    if (userResponse !== undefined) {
-        throw redirect(302, `/result`);
+    const responses = new Map();
+
+    for (const question of questions) {
+        const response = cookies.get(question.id);
+
+        if (response) {
+            responses.set(question.id, response);
+        }
     }
 
-    // otherwise start the user off on question page for now
-    throw redirect(302, `/question`);
-
-    error(404, 'Not found');
+    return { questions, responses, sortOrder };
 };

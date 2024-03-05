@@ -1,4 +1,4 @@
-<div class="pixel-corners--wrapper py-2 px-4 text-xl font-bold hover:text-white hover:bg-black">
+<div class="pixel-corners--wrapper py-2 px-4 font-bold hover:text-white hover:bg-black">
 	<div class="pixel-corners">
 		<slot />
 	</div>
@@ -29,10 +29,6 @@
 	}
 	.pixel-corners {
 		border: 3px solid transparent;
-	}
-	.pixel-corners--wrapper {
-		width: fit-content;
-		height: fit-content;
 	}
 	.pixel-corners--wrapper .pixel-corners {
 		display: block;

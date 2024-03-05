@@ -1,25 +1,35 @@
-import { error, redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import type { Actions } from './$types';
 import { db } from '$lib/db';
-import { todaysQuestion } from '$lib/utils/dbUtils';
 
 export const load: PageServerLoad = async ({ params, cookies }) => {
 
-    const questionData = await todaysQuestion();
+    const questionNum = params.questionNum;
+
+    const questionData = await db.question.findUniqueOrThrow({
+        where: {
+            number: questionNum
+        },
+        include: {
+            answers: true
+        }
+    });
 
     const userResponse = cookies.get(questionData.id);
 
     // if user has already submitted a response, redirect them to result screen 
     if (userResponse !== undefined) {
-        throw redirect(301, `/result`);
+        throw redirect(301, `/questions/${questionNum}/result`);
     }
 
     return { question: questionData };
 };
 
 export const actions = {
-    default: async ({ request, cookies }) => {
+    default: async ({ request, cookies, params }) => {
+        const questionNum = params.questionNum;
+
         const data = await request.formData();
 
         const answer = data.get("selectedAnswer") as string;
@@ -33,6 +43,6 @@ export const actions = {
             }
         });
 
-        throw redirect(301, `/result`);
+        throw redirect(301, `/questions/${questionNum}/result`);
     },
 } satisfies Actions;
