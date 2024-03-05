@@ -2,13 +2,22 @@
 	import '../app.css';
 </script>
 
-<div id="header" class="border-b">
-	<div class="w-fit border-r px-10 flex gap-5 items-center">
-		<img class="w-[30px]" src={'/cube.svg'} alt="3d rotating cube" />
-		<a href="/" class="py-5 text-lg font-bold">STATTON</a>
+<div class="flex flex-col items-center">
+	<div class="max-w-[600px] w-full px-2 flex justify-between items-center">
+		<div class="flex">
+			<img class="w-[30px]" src={'/cube.svg'} alt="3d rotating cube" />
+			<a href="/" class="py-4 px-4 font-bold">STATTON</a>
+		</div>
+		<!-- <div>
+			<PixelatedBorder>
+				<a href="/" class="p-1 font-normal text-sm">back</a>
+			</PixelatedBorder>
+		</div> -->
 	</div>
-</div>
 
-<div class="max-w-[700px] px-10 py-5 flex flex-col gap-5">
-	<slot />
+	<div id="header" class="w-full border-b-2" />
+
+	<div class="max-w-[600px] w-screen px-2 py-5 flex flex-col gap-5">
+		<slot />
+	</div>
 </div>

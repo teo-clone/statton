@@ -1,4 +1,6 @@
 <script lang="ts">
+	import RoundedPixelatedBorder from './RoundedPixelatedBorder.svelte';
+
 	export let resultType: ResultType;
 	export let toggleValue: ResultType;
 
@@ -11,9 +13,10 @@
 	labelMap.set('bar', 'Bar');
 </script>
 
-<button
-	class={`px-2 hover:bg-black hover:text-white ${isSelected ? 'bg-black text-white' : ''}`}
-	on:click={() => (resultType = toggleValue)}
->
-	{labelMap.get(toggleValue)}
+<button on:click={() => (resultType = toggleValue)}>
+	<RoundedPixelatedBorder>
+		<div class={`px-3 ${isSelected ? 'bg-black text-white' : ''}`}>
+			{labelMap.get(toggleValue)}
+		</div>
+	</RoundedPixelatedBorder>
 </button>

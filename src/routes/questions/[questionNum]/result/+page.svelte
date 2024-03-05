@@ -23,15 +23,14 @@
 	let resultType: ResultType = 'vanilla';
 </script>
 
-<div class="flex flex-col gap-2">
-	<h1 class="text-xl font-bold">
-		{data.question.title}
-	</h1>
+<div class="flex flex-col gap-1">
+	<h2 class="text-xs font-bold">Question #{data.question.number}</h2>
+	<h1 class="font-bold text-xl">{data.question.title}</h1>
 </div>
 
-<div class="mt-[20px] flex flex-col items-center justify-center gap-[10px]">
-	<div class="flex items-center gap-2 mb-5">
-		<p class="text-sm">view:</p>
+<div class=" flex flex-col justify-center gap-[10px]">
+	<div class="flex items-center gap-1 mb-5 text-xs">
+		<div class="font-bold">results:</div>
 		<ResultTypeToggler bind:resultType toggleValue="vanilla" />
 		<ResultTypeToggler bind:resultType toggleValue="pie" />
 		<ResultTypeToggler bind:resultType toggleValue="polarArea" />
@@ -39,9 +38,9 @@
 	</div>
 
 	{#if resultType === 'vanilla'}
-		<div class="flex w-full flex-col gap-[10px] text-xl">
+		<div class="flex w-full flex-col gap-[10px]">
 			{#each slices as { label, count, focused }}
-				<div class={`flex w-full justify-between ${focused ? 'bg-black text-white' : ''}`}>
+				<div class={`flex w-full justify-between text-lg ${focused ? 'bg-black text-white' : ''}`}>
 					<div>{label}</div>
 					<div>{percentinator(count)}% ({count})</div>
 				</div>

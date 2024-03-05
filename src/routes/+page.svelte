@@ -22,25 +22,32 @@
 
 <div class="flex gap-2 items-center font-bold text-xs">
 	Sort By:
-	<RoundedPixelatedBorder>
-		<button on:click={() => toggleSort('questionNum')} class="flex items-center pl-4 pr-2">
-			Latest
-			{#if data.sortOrder === 'desc'}
-				<Icon icon="material-symbols:arrow-drop-down" width="20" />
-			{:else}
-				<Icon icon="material-symbols:arrow-drop-up" width="20" />
-			{/if}
-		</button>
-	</RoundedPixelatedBorder>
+	<button on:click={() => toggleSort('questionNum')}>
+		<RoundedPixelatedBorder>
+			<div class="flex items-center pl-4 pr-2">
+				Latest
+				{#if data.sortOrder === 'desc'}
+					<Icon icon="material-symbols:arrow-drop-down" width="20" />
+				{:else}
+					<Icon icon="material-symbols:arrow-drop-up" width="20" />
+				{/if}
+			</div>
+		</RoundedPixelatedBorder>
+	</button>
 </div>
 
 <div class="flex flex-col gap-[10px]">
 	{#each questions as question}
 		<PixelatedBorder>
 			<a href={`/questions/${question.number}`}>
-				<div class="flex items-center justify-between py-2 px-4">
-					<div class="block truncate text-base">
-						#{question.number}: {question.title}
+				<div class="flex items-center justify-between py-1 px-2">
+					<div class="flex items-center gap-2 block truncate">
+						<div class="text-xs font-bold">
+							#{question.number}:
+						</div>
+						<div class="block truncate">
+							{question.title}
+						</div>
 					</div>
 					<div>
 						{#if responses.get(question.id)}
